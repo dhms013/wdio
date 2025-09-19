@@ -4,7 +4,7 @@ const SecurePage = require('../pageobjects/secure.page')
 const inventoryPage = require('../pageobjects/inventory.page')
 const securePage = require('../pageobjects/secure.page')
 
-describe('Login to Swag Labs', () => {
+describe('#1 Login to Swag Labs', () => {
     it('should failed login using invalid credentials', async () => {
         await loginPage.open()
         await loginPage.invalidPassword()
@@ -28,7 +28,7 @@ describe('Login to Swag Labs', () => {
     })
 })
 
-describe('Open sidebar menu', () => {
+describe('#2 Open sidebar menu', () => {
     it('should open the sidebar menu', async () => {
         await inventoryPage.sideBarMenuOpen()
         await expect(inventoryPage.sidebarMenu).toBeExisting()
@@ -41,7 +41,7 @@ describe('Open sidebar menu', () => {
     })
 })
 
-describe('close sidebar menu', () => {
+describe('#3 close sidebar menu', () => {
     it('should close the sidebar menu', async () => {
         await inventoryPage.sideBarMenuclose()
         await expect(inventoryPage.sidebarMenuWrap).toBeExisting()

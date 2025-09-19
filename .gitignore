@@ -1,2 +1,4 @@
 node_modules
 credentials.js
+allure-results
+allure-report
