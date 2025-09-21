@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rimraf allure-results && wdio run ./wdio.conf.js && npx allure generate allure-results --clean && npx allure open allure-report"
-  },
+  "tester": "rimraf allure-results && rimraf errorShots && wdio run ./wdio.conf.js",
+  "report": "npx allure generate allure-results --clean && npx allure open",
+  "test": "npm run tester && npm run report"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

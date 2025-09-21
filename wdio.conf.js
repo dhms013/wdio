@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+const allureReporter = require('@wdio/allure-reporter');
 exports.config = {
     //
     // ====================
@@ -125,9 +128,11 @@ exports.config = {
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: [
         'spec',
-        '@wdio/allure-reporter'
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverScreenshotsReporting: false,
+        }]
     ],
-
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
@@ -229,8 +234,30 @@ exports.config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if (!passed) {
+            // Ensure the errorShots directory exists
+            const screenshotPath = path.join(__dirname, 'errorShots');
+            if (!fs.existsSync(screenshotPath)) {
+                fs.mkdirSync(screenshotPath, { recursive: true });
+            }
+
+            // Take the screenshot and get the base64-encoded string
+            const screenshotData = await browser.takeScreenshot();
+
+            // 1. Save the screenshot to a file
+            const fileName = `${test.title.replace(/\s/g, '-')}.png`;
+            const filePath = path.join(screenshotPath, fileName);
+            fs.writeFileSync(filePath, screenshotData, 'base64');
+
+            // 2. Attach the screenshot to the Allure report
+            allureReporter.addAttachment(
+                'Screenshot on failure',
+                Buffer.from(screenshotData, 'base64'),
+                'image/png'
+            );
+        }
+    },
 
 
     /**

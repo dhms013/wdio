@@ -3,3 +3,4 @@ credentials.js
 allure-results
 allure-report
 .browser
+.errorShots
