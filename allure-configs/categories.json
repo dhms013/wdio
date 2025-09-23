@@ -1,0 +1,12 @@
+[
+    {
+      "name": "Product Defects",
+      "messageRegex": ".*Epic sadface:.*",
+      "description": "Tests that failed due to a bug in the application."
+    },
+    {
+      "name": "Test Defects",
+      "messageRegex": ".*expect.*Error: expect.*",
+      "description": "Tests that failed due to a bug in the test script itself, such as an assertion failure."
+    }
+  ]

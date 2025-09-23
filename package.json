@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  "tester": "rimraf allure-results && rimraf errorShots && wdio run ./wdio.conf.js",
-  "report": "npx allure generate allure-results --clean && npx allure open",
-  "test": "npm run tester && npm run report"
-},
+"scripts": {
+    "test": "npm run preserve-history && npm run clean-results && npm run copy-configs && npm run run-wdio && npm run generate-report && npm run open-report",
+    "preserve-history": "if exist allure-report\\history xcopy /E /I /Y allure-report\\history allure-results\\history",
+    "clean-results": "rimraf allure-results",
+    "copy-configs": "xcopy /E /I /Y allure-configs allure-results",
+    "run-wdio": "wdio run ./wdio.conf.js",
+    "generate-report": "npx allure generate allure-results --clean",
+    "open-report": "npx allure open"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

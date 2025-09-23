@@ -1,0 +1,6 @@
+{
+    "name": "Local Test Runner",
+    "type": "WebdriverIO",
+    "buildName": "Local run on a developer machine",
+    "buildUrl": ""
+  }

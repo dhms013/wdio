@@ -3,14 +3,15 @@ const Page = require('./page');
 const credentials = require('./credentials')
 
 class loginPage extends Page {
+    get welcomeLogo () {
+        return $('.login_logo');
+    }
     get inputUsername () {
         return $('#user-name');
     }
-
     get inputPassword () {
         return $('#password');
     }
-
     get btnSubmit () {
         return $('#login-button');
     }
@@ -30,9 +31,18 @@ class loginPage extends Page {
         await this.inputPassword.setValue(credentials.lockedAccount.password)
         await this.btnSubmit.click()
     }
+    async withoutUsername () {
+        await this.inputPassword.setValue(credentials.validUser.password)
+        await this.btnSubmit.click()
+    }
+    async withoutPassword () {
+        await this.inputUsername.setValue(credentials.validUser.username)
+        await this.inputPassword.setValue('')
+        await this.btnSubmit.click()
+    }
 
     open () {
-        return super.open('login', 'invalidPassword', 'lockedAccount');
+        return super.open('login', 'invalidPassword', 'lockedAccount', 'withoutUsername', 'withoutPassword');
     }
 }
 
