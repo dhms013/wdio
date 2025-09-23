@@ -11,7 +11,8 @@ Welcome to one of my backup storage. this repositories will be about the sample 
 ## Step to use using git clone
 - open terminal/powershell/cmd/any
 - move to your desired directory in your local machine
-- clone this repositories
+- clone this repository
+- move your terminal directory to the clonned repository
 - run 'npm install'
 - then you can try this script using command 'npm run test'
 
