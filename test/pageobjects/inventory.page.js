@@ -5,7 +5,6 @@ class inventoryPage extends Page {
     get openBurgerBtn () {
         return $('#react-burger-menu-btn')
     }
-
     get closeBurgerBtn () {
         return $('#react-burger-cross-btn')
     }
@@ -29,6 +28,27 @@ class inventoryPage extends Page {
     }
     get sortFilter () {
         return $('.product_sort_container')
+    }
+    get shopingChartBtn () {
+        return $('.shopping_cart_link')
+    }
+    get continueShoppingBtn () {
+        return $('#continue-shopping')
+    }
+    get addToCartBtn () {
+        return $('#add-to-cart-sauce-labs-backpack')
+    }
+    get removeBtn () {
+        return $('#remove-sauce-labs-backpack')
+    }
+    get shoppingChartBadge () {
+        return $('.shopping_cart_badge')
+    }
+    get inventoryList () {
+        return $('.inventory_list')
+    }
+    get inventoryContainer () {
+        return $('[data-test="inventory-item-sauce-labs-backpack-img"]')
     }
     
     async sideBarMenuOpen () {
@@ -61,6 +81,21 @@ class inventoryPage extends Page {
     async hiloFilter () {
         await this.sortFilter.selectByVisibleText('Price (high to low)')
     }
+    async addToCart () {
+        await this.addToCartBtn.click()
+    }
+    async removeFromCart () {
+        await this.removeBtn.click()
+    }
+    async shopingChart () {
+        await this.shopingChartBtn.click()
+    }
+    async continueShopping () {
+        await this.continueShoppingBtn.click()
+    }
+    async shoppingChartIcon () {
+        return this.shoppingChartBadge.getText()
+    }
 
     open () {
         return super.open(
@@ -71,7 +106,11 @@ class inventoryPage extends Page {
             'azFilter', 
             'zaFilter', 
             'lohiFilter', 
-            'hiloFilter'
+            'hiloFilter',
+            'addToCart',
+            'removeFromCart',
+            'shopingChart',
+            'continueShopping'
         )}
 }
 

@@ -11,6 +11,14 @@ class SecurePage extends Page {
     get errorLogin () {
         return $('.error-message-container')
     }
+
+    async closeLoginAllert() {
+        await this.errorLogin.click()
+    }
+
+    open () {
+        return super.open('closeLoginAllert');
+    }
 }
 
 module.exports = new SecurePage();

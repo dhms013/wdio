@@ -31,6 +31,26 @@ class loginPage extends Page {
         await this.inputPassword.setValue(credentials.lockedAccount.password)
         await this.btnSubmit.click()
     }
+    async problemUser () {
+        await this.inputUsername.setValue(credentials.problemUser.username)
+        await this.inputPassword.setValue(credentials.problemUser.password)
+        await this.btnSubmit.click()
+    }
+    async performanceGlitchUser () {
+        await this.inputUsername.setValue(credentials.performanceGlitchUser.username)
+        await this.inputPassword.setValue(credentials.performanceGlitchUser.password)
+        await this.btnSubmit.click()
+    }
+    async errorUser () {
+        await this.inputUsername.setValue(credentials.errorUser.username)
+        await this.inputPassword.setValue(credentials.errorUser.password)
+        await this.btnSubmit.click()
+    }
+    async visualUser () {
+        await this.inputUsername.setValue(credentials.visualUser.username)
+        await this.inputPassword.setValue(credentials.visualUser.password)
+        await this.btnSubmit.click()
+    }
     async withoutUsername () {
         await this.inputPassword.setValue(credentials.validUser.password)
         await this.btnSubmit.click()
@@ -42,7 +62,16 @@ class loginPage extends Page {
     }
 
     open () {
-        return super.open('login', 'invalidPassword', 'lockedAccount', 'withoutUsername', 'withoutPassword');
+        return super.open(
+            'login',
+            'invalidPassword',
+            'lockedAccount',
+            'problemUser',
+            'performanceGlitchUser',
+            'errorUser',
+            'visualUser',
+            'withoutUsername',
+            'withoutPassword');
     }
 }
 
