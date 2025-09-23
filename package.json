@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-    "test": "npm run preserve-history && npm run clean-results && npm run copy-configs && npm run run-wdio && npm run generate-report && npm run open-report",
-    "preserve-history": "if exist allure-report\\history xcopy /E /I /Y allure-report\\history allure-results\\history",
+  "scripts": {
+    "test": "node run-all.js",
+    "preserve-history": "node preserve-history.js",
     "clean-results": "rimraf allure-results",
-    "copy-configs": "xcopy /E /I /Y allure-configs allure-results",
+    "copy-configs": "node copy-configs.js",
     "run-wdio": "wdio run ./wdio.conf.js",
     "generate-report": "npx allure generate allure-results --clean",
     "open-report": "npx allure open"
@@ -23,6 +23,7 @@
     "@wdio/mocha-framework": "^9.19.2",
     "@wdio/spec-reporter": "^9.19.2",
     "allure-commandline": "^2.34.1",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "cpy": "^9.0.1"
   }
 }
