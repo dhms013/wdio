@@ -1,4 +1,4 @@
-name: CI
+name: WebdriverIO CI
 
 on:
   push:
@@ -17,17 +17,37 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24' # Or your preferred Node.js version
+          node-version: '24'
 
       - name: Install Dependencies
         run: npm install
 
+      # ==========================================================
+      # 1. RUN TESTS
+      # ==========================================================
       - name: Run WebdriverIO Tests
-        run: npm run run-wdio
+        run: npm run run-wdio || true
 
-      # Optional: Upload test reports or logs
-      # - name: Upload Test Reports
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: webdriverio-reports
-      #     path: ./path/to/your/reports
+      # ==========================================================
+      # 2. GENERATE ALLURE REPORT ARTIFACTS
+      # ==========================================================
+      - name: Copy Configs and Generate Allure Report
+        run: |
+          npm install allure-commandline --save-dev # Ensure Allure CLI is available
+          # Note: If your local 'generate-report' script handles config copying,
+          # you should call it here, or run the commands directly:
+          # Assuming you copy configs into allure-results:
+          cp -r allure-configs/* allure-results/ || true
+          
+          # Generate the report from the results
+          npx allure generate allure-results --clean -o allure-report/
+
+      # ==========================================================
+      # 3. UPLOAD THE REPORT AS A DOWNLOADABLE ARTIFACT
+      # ==========================================================
+      - name: Upload Allure Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 3
