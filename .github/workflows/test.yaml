@@ -34,9 +34,8 @@ jobs:
       - name: Copy Configs and Generate Allure Report
         run: |
           npm install allure-commandline --save-dev # Ensure Allure CLI is available
-          # Note: If your local 'generate-report' script handles config copying,
-          # you should call it here, or run the commands directly:
-          # Assuming you copy configs into allure-results:
+          # Note: In this local 'generate-report' script handles config copying,
+          # you should call it here, or run the commands directly
           cp -r allure-configs/* allure-results/ || true
           
           # Generate the report from the results
