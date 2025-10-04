@@ -1,6 +1,13 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
-const credentials = require('./credentials')
+const validUser = process.env.VALID_USER_USERNAME
+const lockedAccount = process.env.LOCKED_OUT_USER_USERNAME
+const problemUser = process.env.PROBLEM_USER_USERNAME
+const performanceGlitchUser = process.env.PERFORMANCE_GLITCH_USER_USERNAME
+const errorUser = process.env.ERROR_USER_USERNAME
+const visualUser = process.env.VISUAL_USER_USERNAME
+const validPassword = process.env.VALID_USER_PASSWORD
+const invalidPassword = process.env.INVALID_USER_PASSWORD
 
 class loginPage extends Page {
     get welcomeLogo () {
@@ -17,46 +24,46 @@ class loginPage extends Page {
     }
 
     async login () {
-        await this.inputUsername.setValue(credentials.validUser.username)
-        await this.inputPassword.setValue(credentials.validUser.password)
+        await this.inputUsername.setValue(validUser)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async invalidPassword () {
-        await this.inputUsername.setValue(credentials.invalidUser.username)
-        await this.inputPassword.setValue(credentials.invalidUser.password)
+        await this.inputUsername.setValue(validUser)
+        await this.inputPassword.setValue(invalidPassword)
         await this.btnSubmit.click()
     }
     async lockedAccount () {
-        await this.inputUsername.setValue(credentials.lockedAccount.username)
-        await this.inputPassword.setValue(credentials.lockedAccount.password)
+        await this.inputUsername.setValue(lockedAccount)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async problemUser () {
-        await this.inputUsername.setValue(credentials.problemUser.username)
-        await this.inputPassword.setValue(credentials.problemUser.password)
+        await this.inputUsername.setValue(problemUser)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async performanceGlitchUser () {
-        await this.inputUsername.setValue(credentials.performanceGlitchUser.username)
-        await this.inputPassword.setValue(credentials.performanceGlitchUser.password)
+        await this.inputUsername.setValue(performanceGlitchUser)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async errorUser () {
-        await this.inputUsername.setValue(credentials.errorUser.username)
-        await this.inputPassword.setValue(credentials.errorUser.password)
+        await this.inputUsername.setValue(errorUser)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async visualUser () {
-        await this.inputUsername.setValue(credentials.visualUser.username)
-        await this.inputPassword.setValue(credentials.visualUser.password)
+        await this.inputUsername.setValue(visualUser)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async withoutUsername () {
-        await this.inputPassword.setValue(credentials.validUser.password)
+        await this.inputPassword.setValue(validPassword)
         await this.btnSubmit.click()
     }
     async withoutPassword () {
-        await this.inputUsername.setValue(credentials.validUser.username)
+        await this.inputUsername.setValue(validUser)
         await this.inputPassword.setValue('')
         await this.btnSubmit.click()
     }

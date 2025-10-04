@@ -7,6 +7,8 @@ Welcome to one of my backup storage. this repositories will be about the sample 
 - Every humans have the freedom to writte their codes, but make sure it still understandable for your team 😉
 - Before starting, make sure you already install the basic tools like node, etc
 - Be careful if your browser autoupdate is active. Sometimes driver from webdriverIO(chromedriver, geckodriver, etc) isn't updated as soon the latest browser is released.
+- This repository is testing the "https://www.saucedemo.com/" pages
+- I saved the credentials inside '.env' file. So you need to make one if you want to try my codes
 
 ## Step to use using git clone
 - open terminal/powershell/cmd/any
