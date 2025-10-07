@@ -29,7 +29,7 @@ class inventoryPage extends Page {
     get sortFilter () {
         return $('.product_sort_container')
     }
-    get shopingChartBtn () {
+    get shopingcartBtn () {
         return $('.shopping_cart_link')
     }
     get continueShoppingBtn () {
@@ -41,7 +41,7 @@ class inventoryPage extends Page {
     get removeBtn () {
         return $('#remove-sauce-labs-backpack')
     }
-    get shoppingChartBadge () {
+    get shoppingcartBadge () {
         return $('.shopping_cart_badge')
     }
     get inventoryList () {
@@ -87,14 +87,14 @@ class inventoryPage extends Page {
     async removeFromCart () {
         await this.removeBtn.click()
     }
-    async shopingChart () {
-        await this.shopingChartBtn.click()
+    async shopingcart () {
+        await this.shopingcartBtn.click()
     }
     async continueShopping () {
         await this.continueShoppingBtn.click()
     }
-    async shoppingChartIcon () {
-        return this.shoppingChartBadge.getText()
+    async shoppingcartIcon () {
+        return this.shoppingcartBadge.getText()
     }
 
     open () {
@@ -109,7 +109,7 @@ class inventoryPage extends Page {
             'hiloFilter',
             'addToCart',
             'removeFromCart',
-            'shopingChart',
+            'shopingcart',
             'continueShopping'
         )}
 }

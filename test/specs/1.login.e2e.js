@@ -4,7 +4,7 @@ const loginPage = require('../pageobjects/login.page')
 const securePage = require('../pageobjects/secure.page')
 const inventoryPage = require('../pageobjects/inventory.page')
 
-describe('#1 Login using invalid credentials', () => {
+describe('#1 Login', () => {
     beforeEach(async () => {
         await loginPage.open()
     })
